@@ -1,0 +1,90 @@
+Computational Study of Heat Transfer in a Channel Flow Using Lattice Boltzmann Method
+
+Abstract
+This paper presents a numerical investigation of heat transfer in a two-dimensional channel flow using the Lattice Boltzmann Method (LBM). The effects of Reynolds number and Prandtl number on the heat transfer characteristics are examined.
+
+1. Introduction
+Heat transfer in channel flows is a fundamental problem in fluid mechanics and thermal engineering. The Lattice Boltzmann Method has emerged as a powerful tool for simulating fluid flow and heat transfer due to its computational efficiency and ability to handle complex geometries.
+
+2. Numerical Method
+
+2.1 Governing Equations
+The lattice Boltzmann equation for fluid flow is given by:
+
+$$f_i(x + e_i \Delta t, t + \Delta t) - f_i(x,t) = -\frac{1}{\tau} [f_i(x,t) - f_i^{eq}(x,t)]$$
+
+where $f_i$ is the distribution function, $e_i$ is the discrete velocity (m/s), $\Delta t$ is the time step (s), and $\tau$ is the relaxation time (dimensionless).
+
+The macroscopic density $\rho$ (kg/m³) and velocity $u$ (m/s) are obtained from:
+
+$$\rho = \sum_i f_i$$
+
+$$\rho u = \sum_i f_i e_i$$
+
+For thermal LBM, the temperature distribution function evolves according to:
+
+$$g_i(x + e_i \Delta t, t + \Delta t) - g_i(x,t) = -\frac{1}{\tau_T} [g_i(x,t) - g_i^{eq}(x,t)]$$
+
+where $g_i$ is the thermal distribution function, $\tau_T$ is the thermal relaxation time, and temperature $T$ (K) is:
+
+$$T = \sum_i g_i$$
+
+2.2 Model Setup
+The computational domain consists of a 2D channel with length $L = 0.1$ m and height $H = 0.01$ m. A D2Q9 lattice structure is employed with 9 discrete velocities. The lattice spacing is $\Delta x = 0.0001$ m and time step is $\Delta t = 0.00001$ s.
+
+The Reynolds number is defined as:
+
+$$Re = \frac{U_0 H}{\nu}$$
+
+where $U_0$ is the inlet velocity (m/s), $H$ is the channel height (m), and $\nu$ is the kinematic viscosity (m²/s).
+
+The Prandtl number is:
+
+$$Pr = \frac{\nu}{\alpha}$$
+
+where $\alpha$ is the thermal diffusivity (m²/s).
+
+2.3 Boundary and Initial Conditions
+At the inlet ($x = 0$), velocity boundary condition is prescribed:
+- $u = U_0 = 0.1$ m/s (constant)
+- Temperature: $T = T_h = 373$ K (hot wall)
+
+At the outlet ($x = L$), zero-gradient boundary conditions are applied:
+- $\frac{\partial u}{\partial x} = 0$
+- $\frac{\partial T}{\partial x} = 0$
+
+At the top and bottom walls ($y = 0$ and $y = H$):
+- No-slip condition: $u = 0$ m/s
+- Bottom wall: $T = T_c = 293$ K (cold wall)
+- Top wall: adiabatic condition $\frac{\partial T}{\partial y} = 0$
+
+Initial conditions:
+- Velocity: $u(x,y,0) = 0$ m/s everywhere
+- Temperature: $T(x,y,0) = T_c = 293$ K everywhere
+
+2.4 Discretization and Solver
+The Lattice Boltzmann Method inherently uses:
+- Explicit time integration scheme
+- Second-order accurate in space and time
+- Collision-streaming algorithm
+- BGK (Bhatnagar-Gross-Krook) approximation for collision operator
+
+The convergence criterion is:
+
+$$\frac{||u^{n+1} - u^n||}{||u^{n+1}||} < 10^{-6}$$
+
+where $n$ is the iteration number.
+
+Maximum iterations: 1,000,000
+Under-relaxation factor: $\omega = 1.0$ (no relaxation for LBM)
+
+3. Results and Discussion
+The simulations were conducted for Reynolds numbers ranging from 100 to 1000 and Prandtl numbers from 0.7 to 7.0.
+
+[Rest of the paper...]
+
+4. Conclusions
+The Lattice Boltzmann Method successfully captured the heat transfer characteristics in channel flow.
+
+References
+[1] Chen, S., & Doolen, G. D. (1998). Lattice Boltzmann method for fluid flows. Annual Review of Fluid Mechanics.
