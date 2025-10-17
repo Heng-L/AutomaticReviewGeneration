@@ -69,6 +69,39 @@ pyinstaller -Fw GUI.py -i Icon.png
 
 [English tutorial on using GUI](doc/GUI_tutorial.md)
 
+## New Feature: Numerical Method Extraction / 新功能：数值方法提取
+
+✨ **自动从科学文献中提取数值方法和约束条件** / Automatically extract numerical methods and constraints from scientific literature
+
+### Features / 功能特性
+
+- ✅ 提取LaTeX格式方程 / Extract LaTeX equations
+- ✅ 提取变量定义（符号、含义、单位）/ Extract variables (symbol, description, unit)
+- ✅ 提取边界条件和初始条件 / Extract boundary & initial conditions
+- ✅ 提取离散格式（有限差分、有限元等）/ Extract discretization schemes (FD, FE, etc.)
+- ✅ 生成结构化YAML文件 / Generate structured YAML files
+- ✅ 支持批量处理 / Support batch processing
+
+### Quick Start / 快速开始
+
+```bash
+# 单个文件提取 / Extract from single file
+python MethodExtraction/ExtractConstraints.py -i paper.txt -o constraints.yaml
+
+# 批量提取 / Batch extraction
+python MethodExtraction/ExtractConstraints.py -b -i ./papers -o ./output -k "CFD" -m 10
+
+# 运行示例 / Run example
+python examples/demo_batch_extract.py
+```
+
+### Documentation / 文档
+
+- [快速入门指南](doc/快速入门指南.md) - 10分钟上手教程
+- [代码详解教程](doc/代码详解教程.md) - 面向LLM领域初学者的详细讲解
+- [数值方法提取教程](doc/数值方法提取教程.md) - 完整使用教程
+- [Module README](MethodExtraction/README.md) - API参考
+
 
 # Publication
 
